@@ -1,0 +1,194 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #E5E5E5;
+  padding: 1.25rem;
+}
+
+.mainContent {
+  flex: 1;
+}
+
+.contentWrapper {
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.clientCard {
+  background-color: white;
+  border: 0.156rem solid #BEAE88;
+  border-radius: 0.5rem;
+  width: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+}
+
+.clientCard:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0.375rem 0.75rem rgba(190, 174, 136, 0.3);
+}
+
+.cardContent {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 1.5rem;
+  padding: 1.2rem;
+  align-items: center;
+}
+
+.basicInfo {
+  padding-right: 1rem;
+  border-right: 0.125rem solid #BEAE88;
+}
+
+.nameClient {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 0.5rem;
+}
+
+.typeInfo {
+  color: #BEAE88;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.locationInfo {
+  color: #333333;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.middleSection {
+  padding: 0 1rem;
+}
+
+.valueStyle {
+  font-size: 1.1rem;
+  color: #222222;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.featureItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #444444;
+}
+
+.featureItem b {
+  font-size: 1.1rem;
+  color: #222222;
+  margin-bottom: 0.2rem;
+  font-weight: 700;
+}
+
+.rightSection {
+  padding-left: 1rem;
+  border-left: 0.125rem solid #BEAE88;
+}
+
+.amenitiesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.amenityTag {
+  background-color: #BEAE88;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.938rem;
+  font-size: 0.9rem;
+  color: white;
+  font-weight: 500;
+  letter-spacing: 0.0125rem;
+}
+
+.contactSection {
+  border-top: 0.063rem solid #BEAE88;
+  padding-top: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.contactInfo,
+.emailInfo {
+  color: #333333;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.noClients {
+  text-align: center;
+  color: #333333;
+  font-size: 1.1rem;
+  padding: 2rem;
+  font-weight: 500;
+}
+
+@media (max-width: 48rem) {
+  .cardContent {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .basicInfo,
+  .rightSection {
+    border: none;
+    padding: 0;
+  }
+  
+  .basicInfo {
+    border-bottom: 0.063rem solid #BEAE88;
+    padding-bottom: 1rem;
+  }
+  
+  .rightSection {
+    border-top: 0.063rem solid #BEAE88;
+    padding-top: 1rem;
+  }
+  
+  .featuresGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.archiveButton {
+  border-radius: 0.313rem;
+  border: 0.063rem solid #BEAE88;
+  cursor: pointer;
+  background: white;
+  width: 2.188rem;
+  height: 2.188rem;
+  position: relative;
+  margin-left: 16.25rem;
+}
+
+.archiveIcon {
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #666;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
