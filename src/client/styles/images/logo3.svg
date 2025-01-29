@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <!-- Fundo -->
+  <rect width="400" height="200" fill="white"/>
+  
+  <!-- Símbolo abstrato de propriedade de luxo -->
+  <path d="M160 30 L200 30 L200 70 L240 70 L240 90 L160 90 Z" 
+        fill="none" 
+        stroke="#2C3E50" 
+        stroke-width="2"/>
+  
+  <!-- Elementos decorativos dourados -->
+  <rect x="180" y="40" width="40" height="40" 
+        fill="none" 
+        stroke="#D4AF37" 
+        stroke-width="1"/>
+  
+  <!-- Detalhes geométricos -->
+  <line x1="160" y1="60" x2="240" y2="60" 
+        stroke="#D4AF37" 
+        stroke-width="1"/>
+  
+  <!-- Nome da marca -->
+  <text x="200" y="120" 
+        font-family="Didot, serif" 
+        font-size="34" 
+        text-anchor="middle" 
+        fill="#2C3E50"
+        font-weight="bold">
+    ELITE
+  </text>
+  
+  <!-- Elemento decorativo -->
+  <line x1="150" y1="135" x2="250" y2="135" 
+        stroke="#D4AF37" 
+        stroke-width="1.5"/>
+  
+  <!-- Slogan -->
+  <text x="200" y="155" 
+        font-family="Didot, serif" 
+        font-size="14" 
+        text-anchor="middle" 
+        fill="#2C3E50"
+        font-style="italic">
+    Imóveis Extraordinários
+  </text>
+</svg>

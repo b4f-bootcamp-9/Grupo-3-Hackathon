@@ -1,7 +1,7 @@
 import React from "react";
 import { FormGroup, FormControlLabel, Checkbox } from "@mui/material";
 
-export default function CheckboxLabels({ options, name, onChange }) {
+export default function CheckboxLabels({ options,onChange }) {
   return (
     <FormGroup>
       {options.map((text, index) => (

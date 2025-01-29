@@ -1,0 +1,51 @@
+/* src/Card.module.css */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+.cardContainer {
+  background-color: #ffffff;
+  max-width: 22rem;
+  text-align: center;
+  padding: 0, 5rem;
+  margin: "10px" auto; /* Centralizar o card horizontalmente */
+  border: 1px solid #beae88;
+  border-radius: 1rem;
+  box-shadow: 0px 15px 9px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-image: url("");
+}
+
+.cardContainer:hover {
+  transform: scale(0.9);
+  box-shadow: 0px 30px 12px rgba(0, 0, 0, 0.2);
+}
+
+.cardImage {
+  margin-top: 3.25rem;
+  width: 45%; /* Ajustar a largura da imagem */
+  height: auto; /* Manter a proporção da imagem */
+  margin-bottom: 1rem;
+}
+
+.cardText {
+  font-family: 'Times New Roman', Times, serif; /* Fonte Poppins */
+  color: #1b1a1a; /* Cor do texto */
+  position: relative; /* Necessário para posicionar a linha */
+  margin-bottom: 0.25rem; /* Aproximadamente 20px */
+}
+
+.cardText::after {
+  content: "";
+  display: block;
+  width: 5rem; 
+  height: 0.28rem; /* Aproximadamente 4px */
+  background-color: #807e70; /* Cor da linha */
+  border-radius: 0.225rem; /* Aproximadamente 2px */
+  margin: 0.625rem auto 0; /* Aproximadamente 10px auto 0 */
+}
+.cardActionArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Ocupa toda a altura do card */
+}

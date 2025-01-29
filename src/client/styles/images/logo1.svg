@@ -1,0 +1,83 @@
+<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definição dos gradientes -->
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700"/>
+      <stop offset="50%" style="stop-color:#DAA520"/>
+      <stop offset="100%" style="stop-color:#B8860B"/>
+    </linearGradient>
+    
+    <linearGradient id="goldLight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FFD700"/>
+      <stop offset="100%" style="stop-color:#DAA520"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Círculo de fundo -->
+  <circle cx="150" cy="150" r="140" fill="#111111"/>
+  
+  <!-- Círculo decorativo exterior -->
+  <circle cx="150" cy="150" r="138" fill="none" stroke="url(#goldGradient)" stroke-width="2"/>
+  
+  <!-- Casa Moderna -->
+  <!-- Base principal -->
+  <path d="M100 200 L200 200 L200 230 L100 230 Z" 
+        fill="url(#goldGradient)" 
+        stroke="#000000" 
+        stroke-width="1"/>
+  
+  <!-- Andar superior -->
+  <path d="M110 170 L190 170 L190 200 L110 200 Z" 
+        fill="url(#goldLight)" 
+        stroke="#000000" 
+        stroke-width="1"/>
+  
+  <!-- Telhado moderno angular -->
+  <path d="M95 170 L150 130 L205 170 L190 170 L150 140 L110 170 Z" 
+        fill="#DAA520" 
+        stroke="#000000" 
+        stroke-width="1"/>
+  
+  <!-- Janelas panorâmicas -->
+  <rect x="120" y="180" width="25" height="12" fill="#000000" stroke="url(#goldLight)" stroke-width="1"/>
+  <rect x="155" y="180" width="25" height="12" fill="#000000" stroke="url(#goldLight)" stroke-width="1"/>
+  
+  <!-- Porta moderna -->
+  <path d="M140 205 L160 205 L160 230 L140 230 Z" 
+        fill="#000000" 
+        stroke="url(#goldGradient)" 
+        stroke-width="1"/>
+  
+  <!-- Detalhes arquitetônicos -->
+  <line x1="100" y1="200" x2="200" y2="200" stroke="url(#goldLight)" stroke-width="0.5"/>
+  <line x1="110" y1="170" x2="190" y2="170" stroke="url(#goldLight)" stroke-width="0.5"/>
+  
+  <!-- Elementos decorativos modernos -->
+  <path d="M95 230 L85 230 L85 180 L95 180" 
+        fill="none" 
+        stroke="url(#goldGradient)" 
+        stroke-width="1"/>
+  <path d="M205 230 L215 230 L215 180 L205 180" 
+        fill="none" 
+        stroke="url(#goldGradient)" 
+        stroke-width="1"/>
+  
+  <!-- Círculos decorativos -->
+  <circle cx="150" cy="150" r="60" 
+          fill="none" 
+          stroke="url(#goldGradient)" 
+          stroke-width="0.5" 
+          stroke-dasharray="2,3"/>
+  
+  <!-- Elementos de conexão -->
+  <path d="M70 150 Q150 70 230 150" 
+        fill="none" 
+        stroke="url(#goldGradient)" 
+        stroke-width="2" 
+        stroke-dasharray="4,4"/>
+  
+  <!-- Pontos de destaque -->
+  <circle cx="150" cy="150" r="6" fill="url(#goldGradient)"/>
+  <circle cx="70" cy="150" r="4" fill="url(#goldGradient)"/>
+  <circle cx="230" cy="150" r="4" fill="url(#goldGradient)"/>
+</svg>

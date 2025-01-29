@@ -20,7 +20,7 @@ export const arquivarCliente = async (id) => {
 
 export const obterCasas = async (requestData) => {
   // const response = await axios.post("/api/imoveis", requestData);
-  const response = await fetch("/api/imoveis", {
+  const response = await fetch("/api/clientes", {
     method: "POST",
     body: JSON.stringify(requestData)
   });

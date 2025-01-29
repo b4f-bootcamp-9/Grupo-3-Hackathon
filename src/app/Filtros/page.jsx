@@ -58,7 +58,6 @@ const PagFiltrosCasa = () => {
       if (resultado) {
         setCasas(response.data);
       } else {
-        //https://fkhadra.github.io/react-toastify/introduction/
         toast.error("nao encontrei nenhuma casa")
       }
     } catch (error) {
@@ -129,7 +128,7 @@ const PagFiltrosCasa = () => {
                 }
               />
               <div>
-                <h5 style={{ marginTop: "1.3rem", fontSize: "1.2rem" }}>
+                <h5 style={{ marginTop: "1.3rem", fontSize: "1.1rem" }}>
                   Orçamento
                 </h5>
               </div>
@@ -160,7 +159,7 @@ const PagFiltrosCasa = () => {
                 }}
               />
               <div>
-                <h5 style={{ marginTop: "1.3rem", fontSize: "1.2rem" }}>
+                <h5 style={{ marginTop: "1.0rem", fontSize: "1.1rem" }}>
                   Ano de Construção
                 </h5>
               </div>
@@ -181,7 +180,7 @@ const PagFiltrosCasa = () => {
                 }
               />
               <div>
-                <h5 style={{ marginTop: "1.3rem", fontSize: "1.2rem" }}>
+                <h5 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>
                   Nº de Quartos
                 </h5>
               </div>
@@ -197,7 +196,7 @@ const PagFiltrosCasa = () => {
                 ))}
               </select>
               <div>
-                <h5 style={{ marginTop: "1.3rem", fontSize: "1.2rem" }}>
+                <h5 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>
                   Nº de Casas de Banho
                 </h5>
               </div>
@@ -213,8 +212,8 @@ const PagFiltrosCasa = () => {
                 ))}
               </select>
               <div>
-                <h5 style={{ marginTop: "1.3rem", fontSize: "1.2rem" }}>
-                  Inclui Varandas?
+                <h5 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>
+                  Varandas
                 </h5>
               </div>
               <CheckboxLabels
@@ -224,8 +223,8 @@ const PagFiltrosCasa = () => {
                 onChange={(checked) => handleMudaCheckbox("varanda", checked)}
               />
               <div>
-                <h5 style={{ marginTop: "1.3rem", fontSize: "1.2rem" }}>
-                  Tem Piscina?
+                <h5 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>
+                  Piscina
                 </h5>
               </div>
               <CheckboxLabels
@@ -235,8 +234,8 @@ const PagFiltrosCasa = () => {
                 onChange={(checked) => handleMudaCheckbox("piscina", checked)}
               />
               <div>
-                <h5 style={{ marginTop: "1.3rem", fontSize: "1.2rem" }}>
-                  Tem Área Exterior?
+                <h5 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>
+                  Área Exterior
                 </h5>
               </div>
               <CheckboxLabels
@@ -246,8 +245,8 @@ const PagFiltrosCasa = () => {
                 onChange={(checked) => handleMudaCheckbox("area_ext", checked)}
               />
               <div>
-                <h5 style={{ marginTop: "1.3rem", fontSize: "1.2rem" }}>
-                  Inclui Garagem?
+                <h5 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>
+                  Garagem
                 </h5>
               </div>
               <CheckboxLabels
