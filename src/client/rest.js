@@ -1,32 +1,18 @@
-export const adicionarCliente = async (cliente) => {
-  const res = await fetch("http://localhost:3000/clientes/adicionar", {
+export const obterCasas = async (requestData) => {
+  console.log("Requisição para /api/imoveis:", requestData);
+
+  const response = await fetch("http://localhost:3000/api/imoveis", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(cliente),
-  });
-
-
-  if (res.ok) {
-    return await res.json()
-  }
-  return null
-};
-
-export const arquivarCliente = async (id) => {
-  await fetch(`http://localhost:3000/clientes/arquivar/${id}`, {
-    method: "PUT",
-  });
-};
-
-export const obterCasas = async (requestData) => {
-  // const response = await axios.post("/api/imoveis", requestData);
-  const response = await fetch("/api/clientes", {
-    method: "POST",
-    body: JSON.stringify(requestData)
+    body: JSON.stringify(requestData),
   });
 
   if (response.ok) {
-    return await res.json()
+    const data = await response.json();
+    console.log("Casas retornadas:", data);
+    return data;
+  } else {
+    console.log("Erro na requisição:", response.status);
+    return null;
   }
-  return null
-}
+};

@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import ControllableStates from "@/client/components/ControllableStates";
 import CheckboxLabels from "@/client/components/CheckboxLabels";
-import axios from "axios";
 import styles from "@/client/styles/SchoolFilterPage.module.css";
 import { obterCasas } from "@/client/rest";
+import { toast } from "react-toastify";
 
 const PagFiltrosCasa = () => {
   const [filters, setFilters] = useState({
@@ -26,39 +26,138 @@ const PagFiltrosCasa = () => {
     description: "",
   });
 
+  const numOptions = [...Array(7)].map((_, i) => i + 1);
+
+  const clientes = [
+    {
+      _id: "1",
+      name: "Alina Silva",
+      contact: "(351) 915-765-432",
+      email: "alina.silva@email.com",
+      valorMaximo: "450000",
+      tipoImovel: "Apartamento",
+      localizacaoDesejada: "Lisboa, Distrito de Lisboa",
+      requisitos: {
+        quartosDesejados: 3,
+        banheirosDesejados: 2,
+        areaMinima: 120,
+        extras: ["Piscina", "Área Externa", "Garagem"],
+      },
+    },
+    {
+      _id: "2",
+      name: "Pedro Santos",
+      contact: "(351) 912-345-678",
+      email: "pedro.santos@email.com",
+      valorMaximo: "380000",
+      tipoImovel: "Casa",
+      localizacaoDesejada: "Cascais, Distrito de Lisboa",
+      requisitos: {
+        quartosDesejados: 4,
+        banheirosDesejados: 3,
+        areaMinima: 200,
+        extras: ["Piscina", "Garagem"],
+      },
+    },
+    {
+      _id: "3",
+      name: "Izadora Oliveira",
+      contact: "(351) 927-777-888",
+      email: "izadora.oliveira@email.com",
+      valorMaximo: "650000",
+      tipoImovel: "Apartamento",
+      localizacaoDesejada: "Oeiras, Distrito de Lisboa",
+      requisitos: {
+        quartosDesejados: 2,
+        banheirosDesejados: 1,
+        areaMinima: 70,
+        extras: ["Área Externa", "Garagem"],
+      },
+    },
+    {
+      _id: "4",
+      name: "Simone Beatriz",
+      contact: "(351) 935-555-444",
+      email: "simone.beatriz@email.com",
+      valorMaximo: "290000",
+      tipoImovel: "Casa",
+      localizacaoDesejada: "Sintra, Distrito de Lisboa",
+      requisitos: {
+        quartosDesejados: 3,
+        banheirosDesejados: 2,
+        areaMinima: 150,
+        extras: ["Piscina", "Área Externa"],
+      },
+    },
+    {
+      _id: "5",
+      name: "Ariane Henrique",
+      contact: "(351) 963-333-222",
+      email: "ariane.h@email.com",
+      valorMaximo: "550000",
+      tipoImovel: "Apartamento",
+      localizacaoDesejada: "Amadora, Distrito de Lisboa",
+      requisitos: {
+        quartosDesejados: 2,
+        banheirosDesejados: 2,
+        areaMinima: 90,
+        extras: ["Garagem", "Área Externa"],
+      },
+    },
+    {
+      _id: "6",
+      name: "Rafael Costa",
+      contact: "(351) 917-777-666",
+      email: "rafael.costa@email.com",
+      valorMaximo: "850000",
+      tipoImovel: "Casa",
+      localizacaoDesejada: "Loures, Distrito de Lisboa",
+      requisitos: {
+        quartosDesejados: 4,
+        banheirosDesejados: 3,
+        areaMinima: 250,
+        extras: ["Piscina", "Garagem", "Área Externa"],
+      },
+    },
+    {
+      _id: "7",
+      name: "Gabriel Santos",
+      contact: "(351) 968-888-999",
+      email: "gabriel.santos@email.com",
+      valorMaximo: "420000",
+      tipoImovel: "Apartamento",
+      localizacaoDesejada: "Odivelas, Distrito de Lisboa",
+      requisitos: {
+        quartosDesejados: 2,
+        banheirosDesejados: 1,
+        areaMinima: 80,
+        extras: ["Garagem"],
+      },
+    },
+  ];
+
   const [casas, setCasas] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const fetchCasas = async () => {
     setLoading(true);
     try {
-      const minOrcamento = filters.min_orcamento || undefined;
-      const maxOrcamento = filters.max_orcamento || undefined;
-
+      const { min_orcamento, max_orcamento, ...restFilters } = filters;
       const requestData = {
-        ...filters,
-        distrito: filters.distrito || undefined,
-        municipio: filters.municipio || undefined,
-        min_orcamento: minOrcamento,
-        max_orcamento: maxOrcamento,
-        min_ano_constr: filters.min_ano_constr || undefined,
-        max_ano_constr: filters.max_ano_constr || undefined,
+        ...restFilters,
+        min_orcamento: min_orcamento || undefined,
+        max_orcamento: max_orcamento || undefined,
         quartos: filters.quartos ? parseInt(filters.quartos) : undefined,
         casa_banho: filters.casa_banho
           ? parseInt(filters.casa_banho)
           : undefined,
-        varanda: filters.varanda || undefined,
-        piscina: filters.piscina || undefined,
-        area_ext: filters.area_ext || undefined,
-        garagem: filters.garagem || undefined,
       };
 
-     const resultado =  await obterCasas(requestData)
-     console.log(resultado)
-      if (resultado) {
-        setCasas(response.data);
+      const resultado = await obterCasas(requestData);
+      if (resultado && resultado.data) {
+        setCasas(resultado.data);
       } else {
-        toast.error("nao encontrei nenhuma casa")
+        toast.error("Não encontrei nenhuma casa");
       }
     } catch (error) {
       console.error("Erro:", error);
@@ -70,7 +169,7 @@ const PagFiltrosCasa = () => {
   const handleMudaFiltro = (name, value) => {
     setFilters((prev) => ({
       ...prev,
-      [name]: value || "",
+      [name]: value !== undefined ? value : prev[name],
     }));
   };
 
@@ -81,17 +180,33 @@ const PagFiltrosCasa = () => {
     }));
   };
 
-  const formatarOrcamento = (valor) => {
-    if (typeof valor === "string") {
-      const valorNum = parseFloat(valor);
-      if (isNaN(valorNum)) return valor;
-      return valorNum.toLocaleString("pt-PT", {
-        style: "currency",
-        currency: "EUR",
-        minimumFractionDigits: 0,
-      });
+  const handleFiltrar = (clienteId) => {
+    const cliente = clientes.find((cl) => cl._id === clienteId);
+    if (cliente) {
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        tipo_habitacao: cliente.tipoImovel || prevFilters.tipo_habitacao,
+        distrito:
+          cliente.localizacaoDesejada.split(",")[1]?.trim() ||
+          prevFilters.distrito,
+        municipio:
+          cliente.localizacaoDesejada.split(",")[0]?.trim() ||
+          prevFilters.municipio,
+        min_orcamento: cliente.valorMaximo || prevFilters.min_orcamento,
+        max_orcamento: cliente.valorMaximo || prevFilters.max_orcamento,
+        quartos: cliente.requisitos.quartosDesejados || prevFilters.quartos,
+        casa_banho:
+          cliente.requisitos.banheirosDesejados || prevFilters.casa_banho,
+        area_ext:
+          cliente.requisitos.extras.includes("Área Externa") ||
+          prevFilters.area_ext,
+        piscina:
+          cliente.requisitos.extras.includes("Piscina") || prevFilters.piscina,
+        garagem:
+          cliente.requisitos.extras.includes("Garagem") || prevFilters.garagem,
+      }));
     }
-    return "N/A";
+    fetchCasas();
   };
 
   return (
@@ -103,28 +218,39 @@ const PagFiltrosCasa = () => {
               <div className={styles.filterheader}>
                 <h3 className={styles.fontmedium}>Filtros</h3>
               </div>
-              <div></div>
+
+              <h4>Select Client</h4>
+              <select
+                onChange={(e) => handleFiltrar(e.target.value)}
+                defaultValue=""
+              >
+                <option value="">Select a client</option>
+                {clientes.map((cliente) => (
+                  <option key={cliente._id} value={cliente._id}>
+                    {cliente.name}
+                  </option>
+                ))}
+              </select>
+
               <ControllableStates
                 dataOptions={["Lisboa", "Porto", "Aveiro", "Beja", "Braga"]}
                 labelText="Distrito"
                 onChange={(event, newValue) =>
-                  handleMudaFiltro("distrito", event)
+                  handleMudaFiltro("distrito", newValue)
                 }
               />
-              <div></div>
               <ControllableStates
                 dataOptions={["Oeiras", "Sintra", "Cascais"]}
                 labelText="Município"
                 onChange={(event, newValue) =>
-                  handleMudaFiltro("municipio", event)
+                  handleMudaFiltro("municipio", newValue)
                 }
               />
-              <div></div>
               <ControllableStates
                 dataOptions={["Apartamento", "Moradia"]}
                 labelText="Tipo de Habitação"
                 onChange={(event, newValue) =>
-                  handleMudaFiltro("tipo_habitacao", event)
+                  handleMudaFiltro("tipo_habitacao", newValue)
                 }
               />
               <div>
@@ -189,9 +315,9 @@ const PagFiltrosCasa = () => {
                 value={filters.quartos || ""}
                 onChange={(e) => handleMudaFiltro("quartos", e.target.value)}
               >
-                {[...Array(7)].map((_, i) => (
-                  <option key={i + 1} value={i + 1}>
-                    {i + 1}
+                {numOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
                   </option>
                 ))}
               </select>
@@ -205,9 +331,9 @@ const PagFiltrosCasa = () => {
                 value={filters.casa_banho || ""}
                 onChange={(e) => handleMudaFiltro("casa_banho", e.target.value)}
               >
-                {[...Array(7)].map((_, i) => (
-                  <option key={i + 1} value={i + 1}>
-                    {i + 1}
+                {numOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
                   </option>
                 ))}
               </select>
@@ -255,6 +381,7 @@ const PagFiltrosCasa = () => {
                 checked={filters.garagem}
                 onChange={(checked) => handleMudaCheckbox("garagem", checked)}
               />
+              <div></div>
               <button onClick={fetchCasas} className={styles.searchButton}>
                 Filtrar
               </button>

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import getCasasFiltradas from "../../../server/services/filters";
+import getCasasFiltradas from "@/server/services/filters";
 
 export async function POST(req) {
   const body = await req.json();
