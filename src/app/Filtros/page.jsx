@@ -5,6 +5,7 @@ import CheckboxLabels from "@/client/components/CheckboxLabels";
 import styles from "@/client/styles/SchoolFilterPage.module.css";
 import { obterCasas } from "@/client/rest";
 import { toast } from "react-toastify";
+import Header from "@/client/components/header";
 
 const PagFiltrosCasa = () => {
   const [filters, setFilters] = useState({
@@ -210,7 +211,9 @@ const PagFiltrosCasa = () => {
   };
 
   return (
+    
     <div className={styles.pagecontainer}>
+       <Header />
       <main className={styles.maincontent}>
         <div className={styles.contentwrapper}>
           <aside className={styles.sidebar}>

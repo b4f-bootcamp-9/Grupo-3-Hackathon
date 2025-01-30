@@ -14,9 +14,6 @@ export default function LandingPage() {
       <div className={styles.header}></div>
       <div className={styles.columns}>
         <div className={styles.column}>
-          <img src="10.png" alt="Pessoa" className={styles.personImage} />
-        </div>
-        <div className={styles.column}>
           <ActionAreaCard />
         </div>
         <div className={styles.column}>

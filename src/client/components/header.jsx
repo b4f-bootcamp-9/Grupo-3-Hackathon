@@ -1,8 +1,12 @@
+"use client";
 import Image from "next/image"
 import styles from "@/client/styles/Header1.module.css";
 import logo from "@/client/styles/images/logo3r1.png";
+import {useRouter} from "next/navigation"
+import PersonIcon from '@mui/icons-material/Person';
 
 export default function Header() {
+  const router = useRouter()
   return (
     <div>
           <header className={styles.bighead}>
@@ -12,11 +16,17 @@ export default function Header() {
       <nav className={styles.navigator}>
         <ul>
         <li>
-            <a href="#">Home</a>
+            <a href="#" onClick={()=> router.push("/")}>
+              Home</a>
           </li>
         
         </ul>
-        <div className={styles.contentBtn}>
+        <div>
+        <PersonIcon  sx={{ 
+    color: '#beae88',
+    fontSize: 50 
+  }} 
+/>
         </div>
       </nav>
     </header>

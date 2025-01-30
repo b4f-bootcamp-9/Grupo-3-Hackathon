@@ -43,7 +43,7 @@ const NewClientModal = ({ open, handleClose, onAdd }) => {
     e.preventDefault();
     onAdd({
       ...formData,
-      _id: Date.now().toString() // Gerando um ID único
+      _id: Date.now().toString() 
     });
     handleClose();
     setFormData({
