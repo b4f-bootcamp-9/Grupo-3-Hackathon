@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Archive, PlusCircle } from "lucide-react";
 import styles from "@/client/styles/cardClient.module.css";
 import NewClientModal from "@/client/components/newClient";
+import Header from "@/client/components/header";
 
 const ArquivarButton = ({ onArchive, clientId }) => {
   return (
@@ -227,6 +228,7 @@ const CardClientPage = () => {
 
   return (
     <div className={styles.pageContainer}>
+      <Header />
       <button
         onClick={() => setIsModalOpen(true)}
         className="fixed bottom-4 right-4 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg z-10">
