@@ -24,6 +24,7 @@ const PagFiltrosCasa = () => {
     area_ext: false,
     garagem: false,
     description: "",
+    image_URL: "",
   });
 
   const numOptions = [...Array(7)].map((_, i) => i + 1);
@@ -139,6 +140,18 @@ const PagFiltrosCasa = () => {
   const [casas, setCasas] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const formatarOrcamento = (valor) => {
+    if (typeof valor === "string") {
+      const valorNum = parseFloat(valor);
+      if (isNaN(valorNum)) return valor;
+      return valorNum.toLocaleString("pt-PT", {
+        style: "currency",
+        currency: "EUR",
+        minimumFractionDigits: 0,
+      });
+    }
+    return "N/A";
+  };
   const fetchCasas = async () => {
     setLoading(true);
     try {
@@ -147,15 +160,14 @@ const PagFiltrosCasa = () => {
         ...restFilters,
         min_orcamento: min_orcamento || undefined,
         max_orcamento: max_orcamento || undefined,
-        quartos: filters.quartos ? parseInt(filters.quartos) : undefined,
-        casa_banho: filters.casa_banho
-          ? parseInt(filters.casa_banho)
-          : undefined,
+        quartos: filters.quartos !== "" ? parseInt(filters.quartos) : undefined,
+        casa_banho:
+          filters.casa_banho !== "" ? parseInt(filters.casa_banho) : undefined,
       };
-
       const resultado = await obterCasas(requestData);
-      if (resultado && resultado.data) {
-        setCasas(resultado.data);
+      if (resultado) {
+        console.log(resultado);
+        setCasas(resultado);
       } else {
         toast.error("Não encontrei nenhuma casa");
       }
@@ -197,13 +209,9 @@ const PagFiltrosCasa = () => {
         quartos: cliente.requisitos.quartosDesejados || prevFilters.quartos,
         casa_banho:
           cliente.requisitos.banheirosDesejados || prevFilters.casa_banho,
-        area_ext:
-          cliente.requisitos.extras.includes("Área Externa") ||
-          prevFilters.area_ext,
-        piscina:
-          cliente.requisitos.extras.includes("Piscina") || prevFilters.piscina,
-        garagem:
-          cliente.requisitos.extras.includes("Garagem") || prevFilters.garagem,
+        area_ext: cliente.requisitos.extras.includes("Área Externa"),
+        piscina: cliente.requisitos.extras.includes("Piscina"),
+        garagem: cliente.requisitos.extras.includes("Garagem"),
       }));
     }
     fetchCasas();
@@ -235,21 +243,18 @@ const PagFiltrosCasa = () => {
               <ControllableStates
                 dataOptions={["Lisboa", "Porto", "Aveiro", "Beja", "Braga"]}
                 labelText="Distrito"
-                onChange={(event, newValue) =>
-                  handleMudaFiltro("distrito", newValue)
-                }
+                onChange={(newValue) => handleMudaFiltro("distrito", newValue)}
               />
+
               <ControllableStates
                 dataOptions={["Oeiras", "Sintra", "Cascais"]}
                 labelText="Município"
-                onChange={(event, newValue) =>
-                  handleMudaFiltro("municipio", newValue)
-                }
+                onChange={(newValue) => handleMudaFiltro("municipio", newValue)}
               />
               <ControllableStates
                 dataOptions={["Apartamento", "Moradia"]}
                 labelText="Tipo de Habitação"
-                onChange={(event, newValue) =>
+                onChange={(newValue) =>
                   handleMudaFiltro("tipo_habitacao", newValue)
                 }
               />
@@ -346,7 +351,9 @@ const PagFiltrosCasa = () => {
                 options={["Sim"]}
                 name="varanda"
                 checked={filters.varanda}
-                onChange={(checked) => handleMudaCheckbox("varanda", checked)}
+                onChange={(checked) =>
+                  handleMudaCheckbox("varanda", checked === "Sim")
+                }
               />
               <div>
                 <h5 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>
@@ -357,7 +364,9 @@ const PagFiltrosCasa = () => {
                 options={["Sim"]}
                 name="piscina"
                 checked={filters.piscina}
-                onChange={(checked) => handleMudaCheckbox("piscina", checked)}
+                onChange={(checked) =>
+                  handleMudaCheckbox("piscina", checked === "Sim")
+                }
               />
               <div>
                 <h5 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>
@@ -368,7 +377,9 @@ const PagFiltrosCasa = () => {
                 options={["Sim"]}
                 name="area_ext"
                 checked={filters.area_ext}
-                onChange={(checked) => handleMudaCheckbox("area_ext", checked)}
+                onChange={(checked) =>
+                  handleMudaCheckbox("area_ext", checked === "Sim")
+                }
               />
               <div>
                 <h5 style={{ marginTop: "1rem", fontSize: "1.1rem" }}>
@@ -379,7 +390,9 @@ const PagFiltrosCasa = () => {
                 options={["Sim"]}
                 name="garagem"
                 checked={filters.garagem}
-                onChange={(checked) => handleMudaCheckbox("garagem", checked)}
+                onChange={(checked) =>
+                  handleMudaCheckbox("garagem", checked === "Sim")
+                }
               />
               <div></div>
               <button onClick={fetchCasas} className={styles.searchButton}>
@@ -411,7 +424,7 @@ const PagFiltrosCasa = () => {
                       </p>
                     </div>
                     <img
-                      src={casa.image_URL || "https://via.placeholder.com/200"}
+                      src={casa.image_URL}
                       alt={`Casa ${casa.house_name}`}
                       className={styles.imagehouse}
                     />

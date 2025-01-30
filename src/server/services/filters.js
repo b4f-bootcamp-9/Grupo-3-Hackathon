@@ -2,7 +2,6 @@ import connectToDatabase from "@/server/utils/db";
 import Casa from "@/server/models/house";
 
 const getCasasFiltradas = async (filters) => {
-  console.log("CARALHO:", filters);
   const {
     distrito,
     municipio,
@@ -49,8 +48,9 @@ const getCasasFiltradas = async (filters) => {
   if (area_ext !== undefined) filter.area_ext = Boolean(area_ext);
   if (garagem !== undefined) filter.garagem = Boolean(garagem);
 
-  console.log("PUTA QUE PARIU", filter);
-  return await Casa.find(filter);
+  return await Casa.find(filter).select(
+    "house_name distrito municipio tipo_habitacao descricao orcamento quartos casa_banho varanda piscina area_ext garagem ano_constr image_URL"
+  );
 };
 
 export default getCasasFiltradas;
